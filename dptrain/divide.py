@@ -2,7 +2,7 @@ import dpdata
 import numpy as np
 import math
 import os
-os.chdir('/YourTrainDataFile')
+os.chdir('/YourAllStructureDataFile')
 data = dpdata.LabeledSystem('OUTCAR', fmt = 'vasp/outcar')           #通过改变文件名可以将其中不同原子数的OUTCAR文件转化为dpdate数据
 data_number = len(data)
 print(f'# the data contains {data_number} frames.')
