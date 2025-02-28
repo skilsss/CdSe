@@ -1,0 +1,57 @@
+import numpy as np
+import matplotlib.pyplot as plt
+t1=np.loadtxt(r'YourTestFile/results.v_peratom.out',skiprows=1,unpack=True)
+t2=np.loadtxt(r'YourTestFile/results.f.out',skiprows=1,unpack=True)
+t3=np.loadtxt(r'YourTestFile/results.v.out',skiprows=1,unpack=True)
+fig,axes=plt.subplots(2,1,figsize=(5,10))
+
+p1=np.amax(t1)
+pp1=np.amin(t1)
+xp1=np.array([pp1,p1])
+axes[0].plot(xp1,xp1)
+axes[0].scatter(t1[0],t1[1],color='red',label='energy')
+axes[0].legend(loc='upper left')
+axes[0].set_xlabel('DFT')
+axes[0].set_ylabel('pred')
+axes[0].set_title('energy',loc='left')
+
+p2=np.amax(t2)
+pp2=np.amin(t2)
+xp2=np.array([pp2,p2])
+axes[1].plot(xp2,xp2)
+axes[1].scatter(t2[0],t2[3],color='blue',label='fx')
+axes[1].scatter(t2[1],t2[4],color='purple',label='fy')
+axes[1].scatter(t2[2],t2[5],color='orange',label='fz')
+axes[1].legend(loc='upper left')
+axes[1].set_xlabel('DFT')
+axes[1].set_ylabel('pred')
+axes[1].set_title('force',loc='left')
+
+'''''
+p3=np.amax(t3)
+pp3=np.amin(t3)
+xp3=np.array([pp3,p3])
+axes[2].plot(xp3,xp3)
+axes[2].scatter(t3[0],t3[9],label='vxx')
+axes[2].scatter(t3[1],t3[10],label='vxy')
+axes[2].scatter(t3[2],t3[11],label='vxz')
+axes[2].scatter(t3[3],t3[12],label='vyx')
+axes[2].scatter(t3[4],t3[13],label='vyy')
+axes[2].scatter(t3[5],t3[14],label='vyz')
+axes[2].scatter(t3[6],t3[15],label='vzx')
+axes[2].scatter(t3[7],t3[16],label='vzy')
+axes[2].scatter(t3[8],t3[17],label='vzz')
+axes[2].legend(loc='upper left')
+axes[2].set_xlabel('DFT')
+axes[2].set_ylabel('pred')
+axes[2].set_title('v',loc='left')
+
+
+
+axes[2].set_facecolor('white')
+'''''
+axes[0].set_facecolor('white')
+axes[1].set_facecolor('white')
+fig.set_label('test set erorr')
+plt.tight_layout()
+plt.show()
