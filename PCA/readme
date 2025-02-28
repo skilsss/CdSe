@@ -1,0 +1,9 @@
+1 bash .sh
+2 asap gen_desc -np 8 -f merged-coord.xyz soap -u longrange
+3 asap map -f ASAP-desc.xyz -dm '[*]' -o matrix pca
+  # 在chemiscope看PCA结构只需要把matrix改为chemiscope生成的json.gz文件导入网站查看即可
+  (note:删除ASAP-lowD-map.coord的注释行(第一行))
+4 命令行运行paste -d' ' ASAP-lowD-map.coord <(awk '{print $0, $1}' merged-energy-per-atom.txt) > PCA-coord-energy-per-atom-temp
+5 awk '{$12=""; print $0}' PCA-coord-energy-per-atom-temp > PCA-coord-energy-per-atom
+6 python my-PCA-map-energy.py #脚本里路径改成your PCA-coord-energy-per-atom的路径
+
